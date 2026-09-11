@@ -1,4 +1,4 @@
-# Prediction-market trading systems — protocol and results
+# Prediction-market trading systems: protocol and results
 
 Writeup only. The trading code stays private because one of these strategies
 runs live with real money, and a second repo replicates its rule for
@@ -11,7 +11,7 @@ discipline around it: deciding what would count as success **before** looking
 at the answer, and being willing to throw the work away when it does not clear
 that bar. Two of the three systems below were shelved. That is the point.
 
-## C3 — live
+## C3 (live)
 
 Autonomous hourly bot on Kalshi's BTC markets. Trades real money. Safety rails
 are part of the design, not an afterthought:
@@ -23,7 +23,7 @@ are part of the design, not an afterthought:
 - **Read-only account poller** kept in a separate process, so the
   internet-exposed dashboard never holds trading credentials. Defense in depth.
 
-## C4 — shelved
+## C4 (shelved)
 
 A fair-value taker built to beat C3. The success criteria were written down in
 a protocol file **before** the holdout was touched, and the holdout was
@@ -43,12 +43,12 @@ paper bankroll −47%. Verdict file reads *"Shelved permanently."*
 The backtest holdout was the single-day mirage the protocol had warned about.
 Writing the gates down first is the only reason it got caught.
 
-**Test suite: 26 pass, 0 fail.** The centerpiece is a no-lookahead audit —
+**Test suite: 26 pass, 0 fail.** The centerpiece is a no-lookahead audit:
 every trade re-run on data truncated at its own decision minute, required to
 reproduce identically. **417/417 trades were truncation-invariant**, proving no
 decision used future data.
 
-## Arb bot — shelved
+## Arb bot (shelved)
 
 BTC/ETH arbitrage, backtested across **6,278 sessions**. No durable edge.
 Never went live.
